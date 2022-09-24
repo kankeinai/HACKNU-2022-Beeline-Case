@@ -92,7 +92,7 @@ def get_fields_location(parsed_dict, num_steps):
     
     
     # ignore temp columns and system words
-    ignore = ['count', 'valueSet', 'sum', 'last', 'first', 'pythonUDF0', 'pythonUDF1']
+    ignore = ['count', 'valueSet', 'sum', 'last', 'first', 'pythonUDF0', 'pythonUDF1', '_groupingexpression']
     
     # agregators for field names and their locations
     list_fields = set() 
