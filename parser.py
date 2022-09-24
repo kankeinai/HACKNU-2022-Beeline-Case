@@ -1,7 +1,6 @@
 import re
 
-def cleaner(string):
-    
+def cleaner(string):  
     #----------Function-Description-----------------
     # INPUT: string - string with strange garbage
     # OUTPUT:  cleaned string
@@ -19,7 +18,6 @@ def cleaner(string):
     return re.sub(r'[^\w\s]',' ', string)
 
 def list_parser(str_list, keyword):
-    
     #----------Function-Description-----------------
     # INPUT: str_list - string similar to list formatting, keyword - current argument of stage
     # OUTPUT:  final - list of cleaned word
@@ -46,11 +44,9 @@ def list_parser(str_list, keyword):
             
             #add cleaned words to aggregator
             final.append(list_of_words)
-                
-    
     return final
+
 def get_parsed_dict(output):
-    
     #----------Function-Description-----------------
     # INPUT: str_list - string similar to list formatting, keyword - current argument of stage
     # OUTPUT: parsed_dict - dict of indicated earlier format
@@ -86,11 +82,10 @@ def get_parsed_dict(output):
             elif keyword=="Location":
                 
                 # get location according to format of the path
-                parsed_dict[step][keyword] = row.split("/")[-1].strip()[:-1]
-                
+                parsed_dict[step][keyword] = row.split("/")[-1].strip()[:-1]             
     return parsed_dict
+
 def get_fields_location(parsed_dict, num_steps):
-    
     #----------Function-Description-----------------
     # INPUT: parsed_dict - our data, num_steps - number of stages of physical plan
     # OUTPUT: list_fields - all column names, locations - sources of these column names
@@ -117,7 +112,6 @@ def get_fields_location(parsed_dict, num_steps):
     return list_fields, locations
     
 def get_connection_between_fields(parsed_dict, list_fields, num_steps):
-    
     #----------Function-Description-----------------
     # INPUT: parsed_dict - data, list_fields - all fields used while pyspark work, num_steps
     # OUTPUT: edges - connections between columns
@@ -141,6 +135,7 @@ def get_connection_between_fields(parsed_dict, list_fields, num_steps):
                         if len(connection):
                             edges.append(connection)
     return edges
+
 def parser(df):
     #----------Function-Description-----------------
     # INPUT: dataframe used by pyspark
@@ -176,6 +171,7 @@ def parser(df):
     # Where i is an order of step in physical plan
     # Argument_j is any from ["Input", "Output", "Results", "Location"]
     # item_k is one sample of extracted data per each argument
+    
     parsed_dict = get_parsed_dict(output)
     
     
