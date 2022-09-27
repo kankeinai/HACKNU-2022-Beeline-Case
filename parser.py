@@ -220,8 +220,8 @@ def parser(df):
             
             if i in locations.keys():
                 i = locations[i].split(".")[0]+"."+i
-                
-            G[e[-1]]["cols_dependencies"].append(i)
+            if e[-1] in final_columns:
+                G[e[-1]]["cols_dependencies"].append(i)
                     
     return G
 
